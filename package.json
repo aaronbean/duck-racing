@@ -1,14 +1,17 @@
 {
-    "name": "sangre-ridge-duck-racing",
+    "name": "ridge-runners-duck-racing",
     "private": true,
     "version": "0.0.1",
-    "description": "This is a web application that demonstrates duck race using Vue.js and TailwindCSS.",
+    "description": "This is a web application that demonstrates a duck race using Vue.js and TailwindCSS.",
     "type": "module",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/aaronbean/ridge-runners-duck-racing.git"
     },
-    "author": "Aaron Bean <aaron.bean@beardon.com> (https://darkartmailbox.com)",
+    "author": "İlker Durmaz <ilker.prime@gmail.com> (https://github.com/ilkerdurmaz)",
+    "contributors": [
+        "Aaron Bean <aaron.bean@beardon.com> (https://darkartmailbox.com)"
+    ],
     "license": "UNLICENSED",
     "bugs": {
         "url": "https://github.com/aaronbean/ridge-runners-duck-racing/issues"

@@ -76,5 +76,31 @@
             "size": 1,
             "change": 5000
         }
+    },
+    {
+        "racerName": "Seventh Racer",
+        "laneColor": "linear-gradient(19deg, #B721FF 0%, #21D4FD 100%)",
+        "laneNumber": 7,
+        "enabled": true,
+        "position": 0,
+        "stats": {
+            "speed": 1,
+            "accel": 1,
+            "size": 1,
+            "change": 5000
+        }
+    },
+    {
+        "racerName": "Eighth Racer",
+        "laneColor": "linear-gradient(147deg, #FF2525 0%, #FFE53B 74%)",
+        "laneNumber": 8,
+        "enabled": true,
+        "position": 0,
+        "stats": {
+            "speed": 1,
+            "accel": 1,
+            "size": 1,
+            "change": 5000
+        }
     }
 ]

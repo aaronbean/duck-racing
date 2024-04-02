@@ -23,7 +23,7 @@ const props = defineProps({
         </div>
 
         <ListItem
-          v-for="(lane, index) in props.list"
+          v-for="(lane, index) in props.list.filter((prop) => prop.enabled)"
           :key="lane.laneNumber"
           :index="index + 1"
         >
