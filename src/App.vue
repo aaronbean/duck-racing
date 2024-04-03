@@ -1,6 +1,6 @@
 <script setup>
 import { clearLocal, readLocal, writeLocal } from "./utils";
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 import Lane from "./components/LaneComp/LaneComp.vue";
 import laneData from "./assets/data/lanes.json";
 import List from "./components/ListComp/ListComp.vue";
