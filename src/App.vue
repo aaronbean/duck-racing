@@ -1,15 +1,18 @@
 <script setup>
+import { clearLocal, readLocal, writeLocal } from "./utils";
 import { ref, computed } from "vue";
 import Lane from "./components/LaneComp/LaneComp.vue";
+import laneData from "./assets/data/lanes.json";
 import List from "./components/ListComp/ListComp.vue";
 import HeaderComp from "./components/HeaderComp.vue";
 import Modal from "./components/Shared/Modal.vue";
 import FooterComp from "./components/FooterComp.vue";
-import SettingsComp from "./components/SettingsComp/SettingsComp.vue";
-import laneData from "./assets/data/lanes.json";
 import PingText from "./components/Shared/PingTextComp.vue";
 import ResultsComp from "./components/ResultsComp/ResultsComp.vue";
-import { clearLocal, readLocal, writeLocal } from "./utils";
+import SettingsComp from "./components/SettingsComp/SettingsComp.vue";
+
+const COUNTDOWN = 3;
+const COUNTDOWN_WORDS = [ 'SANGRE', 'ARE', 'WE' ];
 
 const darkMode = ref(
     readLocal("darkMode") == null ? false : readLocal("darkMode")
@@ -19,18 +22,20 @@ const lanes = ref(
 );
 const isStarted = ref(false);
 const showModal = ref(false);
-const count = ref(3);
+const count = ref(COUNTDOWN);
 const countDownShow = ref(false);
-const tempList = ref([...getEnabledLanes(lanes.value)]);
+const tempLanes = ref([ ...getEnabledLanes(lanes.value) ]);
 
 const sortedLanes = computed(() => {
-    return tempList.value.sort((a, b) => b.position - a.position);
+    return tempLanes.value.sort((a, b) => b.position - a.position);
 });
 
 const isFinished = computed(() => {
-    return (sortedLanes.value[sortedLanes.value.length - 1].position >= 100);
+    return (sortedLanes.value[ sortedLanes.value.length - 1 ].position >= 100);
     // returns true/false based on the position of the last element in the sortedLanes array
 });
+
+resetLanes();
 
 /* shows the countdown component, subtracts every second from the specified value,
 when the value is 0, it closes the countdown component and starts the race. */
@@ -42,7 +47,7 @@ function countDownToStart() {
             clearInterval(interval);
             isStarted.value = true;
             countDownShow.value = false;
-            count.value = 3;
+            count.value = COUNTDOWN;
         }
     }, 1000);
 }
@@ -50,11 +55,22 @@ function countDownToStart() {
 function clearLocalModal() {
     showModal.value = false;
     clearLocal();
+    lanes.value = laneData;
+    resetLanes();
 }
 
 function darkModeHandler() {
     darkMode.value = !darkMode.value;
     writeLocal("darkMode", darkMode.value);
+}
+
+function getCountdownNumber(_count) {
+    return _count + '';
+}
+
+function getCountdownWord(_count) {
+    if ((_count < 1) || (_count > COUNTDOWN)) return '';
+    return COUNTDOWN_WORDS[ _count - 1 ];
 }
 
 function getEnabledLanes(lanes) {
@@ -64,12 +80,16 @@ function getEnabledLanes(lanes) {
 function resetLanes() {
     isStarted.value = false;
     countDownShow.value = false;
-    tempList.value = [...getEnabledLanes(lanes.value)];
+    tempLanes.value = [ ...getEnabledLanes(lanes.value) ];
+    for (const lane of lanes.value) {
+        lane.position = 0;
+    }
 }
 
 function saveSettings() {
     showModal.value = false;
     writeLocal("laneSettings", lanes.value);
+    resetLanes();
 }
 
 function startRace() {
@@ -98,7 +118,7 @@ function startRace() {
                     ></ResultsComp>
                     <PingText
                         color="white"
-                        :text="count + ''"
+                        :text="getCountdownWord(count)"
                         :ping-text-active="countDownShow"
                     ></PingText>
                     <Lane
@@ -108,7 +128,7 @@ function startRace() {
                         lineBg="url('/racing_stripes.jpg')"
                         :started="lane.enabled ? isStarted : false"
                         :stats="lane.stats"
-                        @img-position-changed="(val) => (lanes[index].position = lane.enabled ? val : 0)"
+                        @img-position-changed="(val) => (lanes[ index ].position = lane.enabled ? val : 0)"
                     ></Lane>
                 </section>
                 <section class="leaderboard">

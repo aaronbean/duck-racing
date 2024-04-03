@@ -6,18 +6,18 @@ const emit = defineEmits(["settingsBtnClick"]);
 <template>
   <footer class="footer-bar">
     <div class="footer-container">
-      <p class="footer-text">Built By Aaron Bean.</p>
+      <p class="footer-text">Built By Willow's dad.</p>
       <nav>
         <ul class="footer-navlist">
           <li>
-            <a href="https://github.com/aaronbean/ridge-runner-duck-racing"
+            <a href="https://github.com/aaronbean/ridge-runners-duck-racing"
               ><i
                 class="bi bi-github hover:text-black dark:hover:text-white p-2"
               ></i
             ></a>
           </li>
           <li>
-            <a href="https://www.linkedin.com/in/aaron-bean"
+            <a href="https://www.linkedin.com/in/aaron-bean-b9834820"
               ><i class="bi bi-linkedin hover:text-blue-600 p-2"></i
             ></a>
           </li>

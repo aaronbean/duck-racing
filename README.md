@@ -1,4 +1,4 @@
-# Ridge Runner Duck Racing Application
+# Ridge Runners Duck Racing Application
 
 This is a web application that demonstrates duck race using Vue.js and TailwindCSS.
 
