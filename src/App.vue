@@ -152,15 +152,15 @@ function startRace() {
 </template>
 
 <style scoped>
+.leaderboard {
+    @apply col-span-4 xl:col-span-1;
+}
+
 .main-container {
     @apply grid grid-cols-4 rounded-lg max-w-7xl mx-auto gap-2 px-1 mt-2 sm:mt-4 sm:gap-4 sm:px-4;
 }
 
 .race-track {
     @apply col-span-4 xl:col-span-3 overflow-hidden rounded-lg relative border-2 dark:border-neutral-700;
-}
-
-.leaderboard {
-    @apply col-span-4 xl:col-span-1;
 }
 </style>

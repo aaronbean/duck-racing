@@ -30,10 +30,16 @@ const props = defineProps({
         default: {
             speed: 1,
             accel: 1,
-            size: 1,
+            size: 1
         }
     }
 });
+
+const p = {
+    HEAD: 1,
+    BODY: 2,
+    FEET: 3
+};
 
 const emit = defineEmits(["imgPositionChanged"]);
 const speed = ref(30);
@@ -54,6 +60,10 @@ function getRacerClass(stats) {
     if (stats.accel > 1) css += ' drop-shadow-[0px_0px_10px_rgba(255,165,0,0.9)]';
     if (stats.change < 1000) css += ' drop-shadow-[0px_0px_10px_rgba(128,0,128,0.9)]';
     return css;
+}
+
+function getRacerImage(frame) {
+    return `/duck/${ frame }.png`;
 }
 
 /*
@@ -94,18 +104,15 @@ function resetLane() {
     <div class="flex">
         <div
             class="flex w-full pr-12 sm:pr-16 lg:pr-28 bg-center bg-no-repeat"
-            :style="{
-        background: props.background,
-        backgroundSize: props.bgSize,
-      }"
+            :style="{ background: props.background, backgroundSize: props.bgSize }"
         >
-      <span class="relative" :style="{ left: position + '%', transform: `scale(${ props.stats.size })` }">
-        <Image
-            :class=getRacerClass(props.stats)
-            :img-src="`/duck/${frame}.png`"
-        ></Image>
-      </span>
-            <Line class="w-3.5 sm:w-4 lg:w-5" :background="props.lineBg"></Line>
+            <span class="relative" :style="{ left: position + '%', transform: `scale(${ props.stats.size })` }">
+                <Image
+                    :class="getRacerClass(props.stats)"
+                    :img-src="getRacerImage(frame)"
+                ></Image>
+            </span>
+        <Line class="w-3.5 sm:w-4 lg:w-5" :background="props.lineBg"></Line>
         </div>
         <Line class="ml-auto w-3.5 sm:w-4 lg:w-5" :background="props.lineBg"></Line>
     </div>

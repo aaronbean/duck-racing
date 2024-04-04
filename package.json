@@ -1,7 +1,7 @@
 {
     "name": "ridge-runners-duck-racing",
     "private": true,
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "This is a web application that demonstrates a duck race using Vue.js and TailwindCSS.",
     "type": "module",
     "repository": {
