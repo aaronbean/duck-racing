@@ -66,7 +66,7 @@ const props = defineProps({
 }
 
 .list-item-content-finished {
-    @apply bg-gray-100;
+    @apply bg-gray-100 dark:bg-gray-800;
 }
 
 .lane-number {

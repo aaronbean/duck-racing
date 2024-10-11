@@ -1,7 +1,7 @@
 {
     "name": "duck-racing",
     "private": true,
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "This is a web application that demonstrates a duck race using Vue.js and TailwindCSS.",
     "type": "module",
     "repository": {
