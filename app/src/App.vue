@@ -2,7 +2,7 @@
 import { clearLocal, readLocal, writeLocal } from "./utils";
 import { computed, ref } from "vue";
 import Lane from "./components/LaneComp/LaneComp.vue";
-import laneData from "./assets/data/lanes.json";
+import laneData from "./data/lanes.json";
 import List from "./components/ListComp/ListComp.vue";
 import HeaderComp from "./components/HeaderComp.vue";
 import Modal from "./components/Shared/Modal.vue";
@@ -110,12 +110,13 @@ function startRace() {
     <div :class="{ dark: darkMode }">
         <div class="min-h-screen dark:bg-neutral-900">
             <HeaderComp
-                title="&nbsp;Oktoberfest Duck Racing"
-                :main-btn-disable="(isStarted && !isFinished) || countDownShow"
-                main-btn-text="Start Race"
+                title="Duck Racing"
+                subtitle="Oktoberfest Edition"
+                main-btn-text="Go!"
                 :dark-mode="darkMode"
-                @mainBtnClick="startRace"
                 @darkModeClick="darkModeHandler"
+                @settingsBtnClick="showModal = true"
+                @startBtnClick="startRace"
             ></HeaderComp>
             <main class="main-container">
                 <section class="race-track">
@@ -144,7 +145,7 @@ function startRace() {
                     <List :list="sortedLanes"></List>
                 </section>
             </main>
-            <FooterComp @settingsBtnClick="showModal = true" @resetBtnClick="resetAll"></FooterComp>
+            <FooterComp />
         </div>
         <Modal
             :modal-active="showModal"

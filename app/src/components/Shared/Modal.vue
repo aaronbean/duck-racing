@@ -24,39 +24,28 @@ defineProps({
         default: true
     }
 });
-const emit = defineEmits(["modalClose", "acceptClick", "clearLocalClick"]);
+const emit = defineEmits([ "modalClose", "acceptClick", "clearLocalClick" ]);
 </script>
 
 <template>
     <Teleport to="#modal">
         <Transition name="modal-outer">
-            <aside
-                class="modal-container"
-                :class="{ dark: darkMode }"
-                v-show="modalActive"
-            >
+            <aside class="modal-container" :class="{ dark: darkMode }" v-show="modalActive">
                 <Transition name="modal-inner">
                     <div class="modal" v-if="modalActive" role="dialog">
                         <div class="modal-header">
                             <h1 class="text-2xl">{{ title }}</h1>
-                            <IconButton @click="emit('modalClose')" aria-label="close dialog"
-                            ><i class="bi bi-x-lg"></i
-                            ></IconButton>
+                            <IconButton @click="emit('modalClose')" aria-label="close dialog"><i class="bi bi-x-lg" /></IconButton>
                         </div>
                         <div class="modal-body">
                             <slot></slot>
                         </div>
                         <div>
                             <div class="modal-footer">
-                                <IconButton @click="emit('clearLocalClick')" aria-label="clear local"
-                                ><i class="bi bi-trash"></i
-                                ></IconButton>
-                                <GradientButton
-                                    v-if="showAcceptButton"
-                                    @click="emit('acceptClick')"
-                                    aria-label="accept dialog"
-                                    :btn-text="acceptButtonText"
-                                ></GradientButton>
+                                <IconButton @click="emit('clearLocalClick')" aria-label="clear local" class="bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400">
+                                    <i class="bi bi-trash-fill text-transparent text-2xl hover:text-gray-500" />
+                                </IconButton>
+                                <GradientButton v-if="showAcceptButton" @click="emit('acceptClick')" aria-label="accept dialog" :btn-text="acceptButtonText" />
                             </div>
                         </div>
                     </div>

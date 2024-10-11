@@ -6,7 +6,7 @@ const props = defineProps({
   },
   size: {
     type: Number,
-    default: 100,
+    default: 50,
   },
   color: {
     type: String,
@@ -26,12 +26,7 @@ const props = defineProps({
 <template>
   <Transition name="backdrop-transition">
     <div v-if="props.pingTextActive" class="backdrop" role="timer">
-      <div
-        :class="{ 'animate-countdown': props.animationActive }"
-        :style="{ fontSize: `${props.size}px`, color: props.color }"
-      >
-        {{ props.text }}
-      </div>
+      <div :class="{ 'animate-countdown': props.animationActive }" :style="{ fontSize: `${ props.size }px`, color: props.color }">{{ props.text }}</div>
     </div>
   </Transition>
 </template>

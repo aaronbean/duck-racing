@@ -1,12 +1,15 @@
 <script setup>
 import GradientButton from "./Shared/GradientButton.vue";
 import IconButton from "./Shared/IconButton.vue";
-import Image from "./Shared/Image.vue";
 
 const props = defineProps({
     title: {
         type: String,
         default: "Default Header Title"
+    },
+    subtitle: {
+        type: String,
+        default: ""
     },
     darkMode: {
         type: Boolean,
@@ -20,46 +23,40 @@ const props = defineProps({
         type: Boolean,
         default: false
     },
-    titleIcon: {
+    titleLogo: {
         type: String,
-        default: "downtown_stillwater.png"
-    },
-    titleIcon2: {
-        type: String,
-        default: "beardon.png"
+        default: "logo.png"
     },
     titleSrc: {
         type: String,
         default: "https://downtownstillwater.org"
     },
-    titleSrc2: {
-        type: String,
-        default: "https://beardon.com"
-    },
 });
 
-const emit = defineEmits(["darkModeClick", "mainBtnClick"]);
+const emit = defineEmits([ "darkModeClick", "settingsBtnClick", "startBtnClick" ]);
 </script>
 
 <template>
     <header class="header-bar">
         <div class="header-container">
-        <span class="title-group">
+        <div class="title-group">
             <a :href="props.titleSrc" target="_blank" rel="noopener noreferrer">
-                <img :src="props.titleIcon" class="object-fit w-32" alt="site logo" />
+                <img :src="props.titleLogo" class="h-8 sm:h-16" alt="Logo" />
             </a>
-            <span class="text-2xl sm:text-4xl">+</span>
-            <a :href="props.titleSrc2" target="_blank" rel="noopener noreferrer">
-                <img :src="props.titleIcon2" class="object-fit w-32" alt="site logo" />
-            </a>
-            <span class="text-2xl sm:text-4xl">{{ props.title }}</span>
-      </span>
+            <div class="p-2 -space-y-2">
+                <div class="text-xl sm:text-4xl">{{ props.title }}</div>
+                <div class="text-md sm:text-2xl italic text-green-600">{{ props.subtitle }}</div>
+            </div>
+        </div>
             <div class="btn-group">
-                <IconButton @click="emit('darkModeClick')" aria-label="dark mode switch" class="bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400">
-                    <i v-if="props.darkMode" class="bi bi-brightness-high text-2xl text-transparent hover:text-gray-300" />
-                    <i v-else class="bi bi-moon-stars text-2xl text-transparent hover:text-gray-300" />
+                <IconButton @click="emit('darkModeClick')" aria-label="Dark Mode" class="bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400">
+                    <i v-if="props.darkMode" class="bi bi-brightness-high text-2xl text-transparent hover:text-yellow-400" />
+                    <i v-else class="bi bi-moon-stars text-2xl text-transparent hover:text-blue-800" />
                 </IconButton>
-                <GradientButton aria-label="start race" :btnDisable="props.mainBtnDisable" :btnText="props.mainBtnText" @click="emit('mainBtnClick')" />
+                <IconButton @click="emit('settingsBtnClick')" aria-label="Settings" class="bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400">
+                    <i class="bi bi-gear-fill text-transparent text-2xl hover:text-gray-500"></i>
+                </IconButton>
+                <GradientButton aria-label="start race" :btnDisable="props.mainBtnDisable" :btnText="props.mainBtnText" @click="emit('startBtnClick')" />
             </div>
         </div>
     </header>

@@ -39,7 +39,7 @@ const emit = defineEmits([ "closeBtnClick" ]);
                     <div class="bronze font-serif">3</div>
                 </div>
             </div>
-            <p class="text-xs text-neutral-300 py-1">You can restart the race by pressing "Start Race" button.</p>
+            <p class="text-xs text-neutral-300 py-1">You can restart the race by pressing "Go!" button.</p>
         </div>
     </Transition>
 </template>

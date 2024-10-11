@@ -1,17 +1,10 @@
-<script setup>
-import IconButton from "./Shared/IconButton.vue";
-
-const emit = defineEmits([ "resetBtnClick", "settingsBtnClick" ]);
-</script>
-
 <template>
     <footer class="footer-bar">
         <div class="footer-container">
-            <p class="footer-text">
-                Built By <a href="https://beardon.com" target="_blank" class="hover:text-red-900">Beardon</a>.
-                Hosted by <a href="https://juvoweb.com" target="_blank" class="hover:text-blue-600">Juvo Web</a>.
-                Designed for <a href="https://downtownstillwater.org/" target="_blank" class="hover:text-orange-500">Downtown Stillwater Association</a> Oktoberfest.
-            </p>
+            <div class="footer-text">
+                <div>Built By <a href="https://beardon.com" target="_blank" class="hover:text-red-900">Beardon</a>.</div>
+                <div>Hosted by <a href="https://juvoweb.com" target="_blank" class="hover:text-blue-600">Juvo Web</a>.</div>
+            </div>
             <nav>
                 <ul class="footer-navlist">
                     <li>
@@ -29,16 +22,6 @@ const emit = defineEmits([ "resetBtnClick", "settingsBtnClick" ]);
                             <i class="bi bi-github hover:text-black dark:hover:text-white p-2"></i>
                         </a>
                     </li>
-                    <li>
-                        <IconButton @click="emit('settingsBtnClick')" aria-label="Settings">
-                            <i class="bi bi-gear-fill hover:text-gray-500 p-2"></i>
-                        </IconButton>
-                    </li>
-                    <li>
-                        <IconButton @click="emit('resetBtnClick')" aria-label="Reset">
-                            <i class="bi bi-recycle hover:text-green-600"></i>
-                        </IconButton>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -55,10 +38,10 @@ const emit = defineEmits([ "resetBtnClick", "settingsBtnClick" ]);
 }
 
 .footer-text {
-    @apply text-sm text-gray-500 sm:text-center dark:text-gray-400;
+    @apply text-sm text-gray-500 sm:text-left dark:text-gray-400;
 }
 
 .footer-navlist {
-    @apply flex flex-wrap gap-2 items-center text-transparent bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400 text-3xl;
+    @apply flex flex-wrap gap-2 items-center text-transparent bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400 text-2xl sm:text-3xl;
 }
 </style>
