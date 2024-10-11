@@ -35,13 +35,7 @@ const props = defineProps({
     }
 });
 
-const p = {
-    HEAD: 1,
-    BODY: 2,
-    FEET: 3
-};
-
-const emit = defineEmits(["imgPositionChanged"]);
+const emit = defineEmits([ "imgPositionChanged" ]);
 const speed = ref(30);
 const position = ref(0);
 const frame = ref(1);
@@ -49,13 +43,13 @@ let interval;
 
 watch(
     () => props.started,
-    () => {
-        props.started ? move(props.stats) : resetLane();
+    async () => {
+        props.started ? await move(props.stats) : resetLane();
     }
 );
 
 function getRacerClass(stats) {
-    let css = 'w-12 sm:w-16 lg:w-28';
+    let css = 'w-10 sm:w-14 lg:w-24';
     if (stats.speed > 1) css += ' drop-shadow-[0px_0px_10px_rgba(255,255,0,0.9)]';
     if (stats.accel > 1) css += ' drop-shadow-[0px_0px_10px_rgba(255,165,0,0.9)]';
     if (stats.change < 1000) css += ' drop-shadow-[0px_0px_10px_rgba(128,0,128,0.9)]';
@@ -106,10 +100,10 @@ function resetLane() {
             class="flex w-full pr-12 sm:pr-16 lg:pr-28 bg-center bg-no-repeat"
             :style="{ background: props.background, backgroundSize: props.bgSize }"
         >
-            <span class="relative" :style="{ left: position + '%', transform: `scale(${ props.stats.size })` }">
+            <span class="relative" :style="{ left: (position * 1.03) + '%', transform: `scale(${ props.stats.size * 0.90 })` }">
                 <Image
                     :class="getRacerClass(props.stats)"
-                    :img-src="getRacerImage(frame)"
+                    :imgSrc="getRacerImage(frame)"
                 ></Image>
             </span>
         <Line class="w-3.5 sm:w-4 lg:w-5" :background="props.lineBg"></Line>

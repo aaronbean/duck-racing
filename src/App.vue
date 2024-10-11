@@ -12,7 +12,7 @@ import ResultsComp from "./components/ResultsComp/ResultsComp.vue";
 import SettingsComp from "./components/SettingsComp/SettingsComp.vue";
 
 const COUNTDOWN = 3;
-const COUNTDOWN_WORDS = [ 'SANGRE', 'ARE', 'WE' ];
+const COUNTDOWN_WORDS = [ 'LET\'S', 'GET', 'QUACKING' ];
 
 const darkMode = ref(
     readLocal("darkMode") == null ? false : readLocal("darkMode")
@@ -70,7 +70,7 @@ function getCountdownNumber(_count) {
 
 function getCountdownWord(_count) {
     if ((_count < 1) || (_count > COUNTDOWN)) return '';
-    return COUNTDOWN_WORDS[ _count - 1 ];
+    return COUNTDOWN_WORDS.toReversed()[ _count - 1 ];
 }
 
 function getEnabledLanes(lanes) {
@@ -102,7 +102,7 @@ function startRace() {
     <div :class="{ dark: darkMode }">
         <div class="min-h-screen dark:bg-neutral-900">
             <HeaderComp
-                title="&nbsp;Duck Racing App"
+                title="&nbsp;Oktoberfest Duck Racing"
                 :main-btn-disable="(isStarted && !isFinished) || countDownShow"
                 main-btn-text="Start Race"
                 :dark-mode="darkMode"
