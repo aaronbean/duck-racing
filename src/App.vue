@@ -77,12 +77,20 @@ function getEnabledLanes(lanes) {
     return lanes.filter((lane) => lane.enabled);
 }
 
+function resetAll() {
+    clearLocal();
+    lanes.value = laneData;
+    resetLanes();
+}
+
 function resetLanes() {
     isStarted.value = false;
     countDownShow.value = false;
+    count.value = COUNTDOWN;
     tempLanes.value = [ ...getEnabledLanes(lanes.value) ];
     for (const lane of lanes.value) {
         lane.position = 0;
+        lane.started = false;
     }
 }
 
@@ -125,6 +133,7 @@ function startRace() {
                         v-for="(lane, index) in lanes"
                         :key="lane.racerName"
                         :background="lane.enabled ? lane.laneColor : 'linear-gradient(90deg, rgba(88,88,88,1) 0%, rgba(0,0,0,1) 100%)'"
+                        :effects="lane.effects"
                         lineBg="url('/racing_stripes.jpg')"
                         :started="lane.enabled ? isStarted : false"
                         :stats="lane.stats"
@@ -135,7 +144,7 @@ function startRace() {
                     <List :list="sortedLanes"></List>
                 </section>
             </main>
-            <FooterComp @settingsBtnClick="showModal = true"></FooterComp>
+            <FooterComp @settingsBtnClick="showModal = true" @resetBtnClick="resetAll"></FooterComp>
         </div>
         <Modal
             :modal-active="showModal"

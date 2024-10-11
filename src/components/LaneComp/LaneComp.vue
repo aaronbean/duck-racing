@@ -13,6 +13,15 @@ const props = defineProps({
         type: String,
         default: "auto"
     },
+    effects: {
+        type: Object,
+        default: {
+            accel: false,
+            dizzy: false,
+            embiggen: false,
+            fast: false,
+        },
+    },
     imgSrc: {
         type: String,
         default: "/ridge_runners.png"
@@ -30,7 +39,8 @@ const props = defineProps({
         default: {
             speed: 1,
             accel: 1,
-            size: 1
+            change: 1000,
+            size: 1,
         }
     }
 });
@@ -56,8 +66,8 @@ function getRacerClass(stats) {
     return css;
 }
 
-function getRacerImage(frame) {
-    return `/duck/${ frame }.png`;
+function getRacerImage(frame, effects) {
+    return effects.dizzy ? `/duck/rev/${ frame }.png` : `/duck/${ frame }.png`;
 }
 
 /*
@@ -70,6 +80,7 @@ function getRacerImage(frame) {
 async function move(stats) {
     randomAcceleration(stats);
     for (let i = 0; i < 500; i++) {
+        if (!props.started) break;
         if ((i % 4) === 0) frame.value++;
         if (frame.value > 10) frame.value = 1;
         position.value += 0.2;
@@ -96,18 +107,12 @@ function resetLane() {
 
 <template>
     <div class="flex">
-        <div
-            class="flex w-full pr-12 sm:pr-16 lg:pr-28 bg-center bg-no-repeat"
-            :style="{ background: props.background, backgroundSize: props.bgSize }"
-        >
-            <span class="relative" :style="{ left: (position * 1.03) + '%', transform: `scale(${ props.stats.size * 0.90 })` }">
-                <Image
-                    :class="getRacerClass(props.stats)"
-                    :imgSrc="getRacerImage(frame)"
-                ></Image>
+        <div class="flex w-full pr-12 sm:pr-16 lg:pr-28 bg-center bg-no-repeat" :style="{ background: props.background, backgroundSize: props.bgSize }">
+            <span class="relative" :style="{ left: (position * 1.027) + '%', transform: `scale(${ props.stats.size * 0.90 })` }">
+                <Image :class="getRacerClass(props.stats)" :imgSrc="getRacerImage(frame, props.effects)" />
             </span>
-        <Line class="w-3.5 sm:w-4 lg:w-5" :background="props.lineBg"></Line>
+            <Line class="w-3.5 sm:w-4 lg:w-5" :background="props.lineBg" />
         </div>
-        <Line class="ml-auto w-3.5 sm:w-4 lg:w-5" :background="props.lineBg"></Line>
+        <Line class="ml-auto w-3.5 sm:w-4 lg:w-5" :background="props.lineBg" />
     </div>
 </template>

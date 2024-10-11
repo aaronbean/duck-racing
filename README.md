@@ -20,13 +20,13 @@ This dialog window opens when the settings icon in the Footer is pressed. It has
 
 ## Getting Started
 
-To get started you can simply clone this `ridge-runners-duck-racing` repository and install the dependencies.
+To get started you can simply clone this `duck-racing` repository and install the dependencies.
 
-Clone the `ridge-runners-duck-racing` repository using git:
+Clone the `duck-racing` repository using git:
 
 ```bash
-git clone https://github.com/aaronbean/ridge-runners-duck-racing.git
-cd ridge-runners-duck-racing
+git clone https://github.com/aaronbean/duck-racing.git
+cd duck-racing
 ```
 
 Install dependencies with this command:

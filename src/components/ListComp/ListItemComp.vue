@@ -9,11 +9,7 @@ const props = defineProps({
 
 <template>
     <div class="list-item">
-    <span
-        class="index-symbol font-serif"
-        :class="[ index > 3 ? 'gradient-others' : `gradient-${ props.index }` ]"
-    >{{ props.index }}</span
-    >
+    <span class="index-symbol font-serif" :class="[ index > 3 ? 'gradient-others' : `gradient-${ props.index }` ]">{{ props.index }}</span>
         <slot></slot>
     </div>
 </template>

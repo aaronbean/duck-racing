@@ -45,52 +45,21 @@ const emit = defineEmits(["darkModeClick", "mainBtnClick"]);
     <header class="header-bar">
         <div class="header-container">
         <span class="title-group">
-            <a
-            :href="props.titleSrc"
-            target="_blank"
-            rel="noopener noreferrer"
-            >
-                <img
-                    :src="props.titleIcon"
-                    class="object-fit w-32"
-                    alt="site logo"
-                />
+            <a :href="props.titleSrc" target="_blank" rel="noopener noreferrer">
+                <img :src="props.titleIcon" class="object-fit w-32" alt="site logo" />
             </a>
             <span class="text-2xl sm:text-4xl">+</span>
-            <a
-                :href="props.titleSrc2"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                <img
-                    :src="props.titleIcon2"
-                    class="object-fit w-32"
-                    alt="site logo"
-                />
+            <a :href="props.titleSrc2" target="_blank" rel="noopener noreferrer">
+                <img :src="props.titleIcon2" class="object-fit w-32" alt="site logo" />
             </a>
             <span class="text-2xl sm:text-4xl">{{ props.title }}</span>
       </span>
             <div class="btn-group">
-                <IconButton
-                    @click="emit('darkModeClick')"
-                    aria-label="dark mode switch"
-                    class="bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400"
-                >
-                    <i
-                        v-if="props.darkMode"
-                        class="bi bi-brightness-high text-2xl text-transparent hover:text-gray-300"
-                    ></i>
-                    <i
-                        v-else
-                        class="bi bi-moon-stars text-2xl text-transparent hover:text-gray-300"
-                    ></i>
+                <IconButton @click="emit('darkModeClick')" aria-label="dark mode switch" class="bg-clip-text bg-gradient-to-br from-pink-500 to-orange-400">
+                    <i v-if="props.darkMode" class="bi bi-brightness-high text-2xl text-transparent hover:text-gray-300" />
+                    <i v-else class="bi bi-moon-stars text-2xl text-transparent hover:text-gray-300" />
                 </IconButton>
-                <GradientButton
-                    aria-label="start race"
-                    :btnDisable="props.mainBtnDisable"
-                    :btnText="props.mainBtnText"
-                    @click="emit('mainBtnClick')"
-                ></GradientButton>
+                <GradientButton aria-label="start race" :btnDisable="props.mainBtnDisable" :btnText="props.mainBtnText" @click="emit('mainBtnClick')" />
             </div>
         </div>
     </header>

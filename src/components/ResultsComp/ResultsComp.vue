@@ -9,7 +9,7 @@ const props = defineProps({
     },
     results: {
         type: Array,
-        default: []
+        default: [ ]
     }
 });
 
@@ -23,15 +23,11 @@ const emit = defineEmits([ "closeBtnClick" ]);
             <div class="results-header">
                 <span class="w-8"></span>
                 <h2 class="text-2xl">Race Results</h2>
-                <IconButton @click="emit('closeBtnClick')"
-                ><i class="bi bi-x-lg"></i
-                ></IconButton>
+                <IconButton @click="emit('closeBtnClick')"><i class="bi bi-x-lg" /></IconButton>
             </div>
             <div class="podium">
                 <div class="podium-bar">
-                    <p class="bar-text">
-                        {{ props.results[ 1 ].racerName }}
-                    </p>
+                    <p class="bar-text">{{ props.results[ 1 ].racerName }}</p>
                     <div class="silver font-serif">2</div>
                 </div>
                 <div class="podium-bar">
@@ -43,9 +39,7 @@ const emit = defineEmits([ "closeBtnClick" ]);
                     <div class="bronze font-serif">3</div>
                 </div>
             </div>
-            <p class="text-xs text-neutral-300 py-1">
-                You can restart the race by pressing "Start Race" button.
-            </p>
+            <p class="text-xs text-neutral-300 py-1">You can restart the race by pressing "Start Race" button.</p>
         </div>
     </Transition>
 </template>

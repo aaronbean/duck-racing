@@ -10,11 +10,11 @@ const ducks = ref(duckData);
 const props = defineProps({
     laneSettings: {
         type: Object,
-        default: { }
+        default: { },
     },
     laneIndex: {
         type: Number,
-        default: 0
+        default: 0,
     }
 });
 
@@ -41,11 +41,13 @@ function reset(laneIndex) {
 }
 
 function toggleAcceleration(e) {
+    changedLaneSettings.effects.accel = e.target.checked;
     changedLaneSettings.stats.accel = e.target.checked ? 1.5 : 1;
     emit("settingsChanged", changedLaneSettings);
 }
 
 function toggleDizzy(e) {
+    changedLaneSettings.effects.dizzy = e.target.checked;
     changedLaneSettings.stats.change = e.target.checked ? 500 : 1000;
     emit("settingsChanged", changedLaneSettings);
 }
@@ -56,11 +58,13 @@ function toggleEnabled(e) {
 }
 
 function toggleEmbiggen(e) {
+    changedLaneSettings.effects.embiggen = e.target.checked;
     changedLaneSettings.stats.size = e.target.checked ? 1.2 : 1;
     emit("settingsChanged", changedLaneSettings);
 }
 
 function toggleFast(e) {
+    changedLaneSettings.effects.fast = e.target.checked;
     changedLaneSettings.stats.speed = e.target.checked ? 1.5 : 1;
     emit("settingsChanged", changedLaneSettings);
 }
@@ -69,72 +73,32 @@ function toggleFast(e) {
 <template>
     <div class="settings-container">
         <label class="inline-flex items-center cursor-pointer">
-            <input
-                type="checkbox"
-                value=""
-                @change="toggleEnabled"
-                class="sr-only peer"
-                :checked="props.laneSettings.enabled"
-            />
+            <input type="checkbox" value="" @change="toggleEnabled" class="sr-only peer" :checked="props.laneSettings.enabled" />
             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
         </label>
         <span class="index-symbol">{{ props.laneIndex + 1 }}</span>
-        <input
-            type="text"
-            :value="props.laneSettings.racerName"
-            @change="nameChangeHandler"
-            placeholder="Racer Name"
-            class="racer-name-input"
-        />
+        <input type="text" :value="props.laneSettings.racerName" @change="nameChangeHandler" placeholder="Racer Name" class="racer-name-input" />
         <label class="inline-flex items-center cursor-pointer">
-            <input
-                type="checkbox"
-                value=""
-                @change="toggleEmbiggen"
-                class="sr-only peer"
-                :checked="props.laneSettings.stats.size > 1"
-            />
+            <input type="checkbox" value="" @change="toggleEmbiggen" class="sr-only peer" :checked="props.laneSettings.effects.embiggen" />
             <span title="Embiggen your duck" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">🍄</span>
             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-red-300 dark:peer-focus:ring-red-800 dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-red-600"></div>
         </label>
         <label class="inline-flex items-center cursor-pointer">
-            <input
-                type="checkbox"
-                value=""
-                @change="toggleFast"
-                class="sr-only peer"
-                :checked="props.laneSettings.stats.speed > 1"
-            />
+            <input type="checkbox" value="" @change="toggleFast" class="sr-only peer" :checked="props.laneSettings.effects.fast" />
             <span title="Juice your duck with N₂O" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">🐰</span>
             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-yellow-300 dark:peer-focus:ring-yellow-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-yellow-400"></div>
         </label>
         <label class="inline-flex items-center cursor-pointer">
-            <input
-                type="checkbox"
-                value=""
-                @change="toggleAcceleration"
-                class="sr-only peer"
-                :checked="props.laneSettings.stats.accel > 1"
-            />
+            <input type="checkbox" value="" @change="toggleAcceleration" class="sr-only peer" :checked="props.laneSettings.effects.accel" />
             <span title="Fill your duck with premium, 94 octane gas" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">⛽</span>
             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-orange-300 dark:peer-focus:ring-orange-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-orange-500"></div>
         </label>
         <label class="inline-flex items-center cursor-pointer">
-            <input
-                type="checkbox"
-                value=""
-                @change="toggleDizzy"
-                class="sr-only peer"
-                :checked="props.laneSettings.stats.change < 1000"
-            />
+            <input type="checkbox" value="" @change="toggleDizzy" class="sr-only peer" :checked="props.laneSettings.effects.dizzy" />
             <span title="Duck be trippin'" class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">🌀</span>
             <div class="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-purple-300 dark:peer-focus:ring-purple-800 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-purple-600"></div>
         </label>
-        <button
-            v-for="(duck, index) in ducks"
-            :class="`color-button-${ index + 1 }`"
-            @click="colorize(props.laneIndex, duck)"
-        ><i class="bi bi-palette"></i></button>
+        <button v-for="(duck, index) in ducks" :class="`color-button-${ index + 1 }`" @click="colorize(props.laneIndex, duck)"><i class="bi bi-palette"></i></button>
         <button title="Reset your duck" class="reset-button" @click="reset(props.laneIndex)"><i class="bi bi-arrow-counterclockwise"></i></button>
     </div>
 </template>

@@ -24,18 +24,11 @@ const props = defineProps({
                     <span class="ml-auto p-1">LANE</span>
                 </div>
 
-                <ListItem
-                    v-for="(lane, index) in props.list.filter((prop) => prop.enabled)"
-                    :key="lane.laneNumber"
-                    :index="index + 1"
-                    :class="(lane.position >= 100) ? 'list-item-content-finished' : ''"
-                >
+                <ListItem v-for="(lane, index) in props.list.filter((prop) => prop.enabled)" :key="lane.laneNumber" :index="index + 1" :class="(lane.position >= 100) ? 'list-item-content-finished' : ''">
                     <span><ConfettiExplosion v-if="lane.position >= 100" class="confetti" :particleCount="50" :particleSize="6" :duration="2000" /></span>
                     <div class="list-item-content">
                         <p><span :class="(lane.position >= 100) ? 'font-bold' : ''">{{ lane.racerName }}</span></p>
-                        <span class="lane-number" :style="{ background: lane.laneColor }">
-              {{ lane.laneNumber }}
-            </span>
+                        <span class="lane-number" :style="{ background: lane.laneColor }">{{ lane.laneNumber }}</span>
                     </div>
                 </ListItem>
             </div>

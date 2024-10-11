@@ -1,7 +1,7 @@
 <script setup>
 import IconButton from "./Shared/IconButton.vue";
 
-const emit = defineEmits([ "settingsBtnClick" ]);
+const emit = defineEmits([ "resetBtnClick", "settingsBtnClick" ]);
 </script>
 
 <template>
@@ -25,16 +25,18 @@ const emit = defineEmits([ "settingsBtnClick" ]);
                         </a>
                     </li>
                     <li>
-                        <a href="https://github.com/aaronbean/ridge-runners-duck-racing" target="_blank">
+                        <a href="https://github.com/aaronbean/duck-racing" target="_blank">
                             <i class="bi bi-github hover:text-black dark:hover:text-white p-2"></i>
                         </a>
                     </li>
                     <li>
-                        <IconButton
-                            @click="emit('settingsBtnClick')"
-                            aria-label="settings button"
-                        >
+                        <IconButton @click="emit('settingsBtnClick')" aria-label="Settings">
                             <i class="bi bi-gear-fill hover:text-gray-500 p-2"></i>
+                        </IconButton>
+                    </li>
+                    <li>
+                        <IconButton @click="emit('resetBtnClick')" aria-label="Reset">
+                            <i class="bi bi-recycle hover:text-green-600"></i>
                         </IconButton>
                     </li>
                 </ul>

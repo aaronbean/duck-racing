@@ -1,12 +1,12 @@
 {
-    "name": "ridge-runners-duck-racing",
+    "name": "duck-racing",
     "private": true,
-    "version": "0.1.1",
+    "version": "0.2.0",
     "description": "This is a web application that demonstrates a duck race using Vue.js and TailwindCSS.",
     "type": "module",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/aaronbean/ridge-runners-duck-racing.git"
+        "url": "git+https://github.com/aaronbean/duck-racing.git"
     },
     "author": "İlker Durmaz <ilker.prime@gmail.com> (https://github.com/ilkerdurmaz)",
     "contributors": [
@@ -14,9 +14,9 @@
     ],
     "license": "UNLICENSED",
     "bugs": {
-        "url": "https://github.com/aaronbean/ridge-runners-duck-racing/issues"
+        "url": "https://github.com/aaronbean/duck-racing/issues"
     },
-    "homepage": "https://github.com/aaronbean/ridge-runners-duck-racing#readme",
+    "homepage": "https://github.com/aaronbean/duck-racing#readme",
     "scripts": {
         "dev": "vite --host",
         "build": "vite build",
@@ -27,7 +27,7 @@
         "vue-confetti-explosion": "^1.0.2"
     },
     "devDependencies": {
-        "@vitejs/plugin-vue": "^3.2.0",
+        "@vitejs/plugin-vue": "^5.1.4",
         "autoprefixer": "^10.4.19",
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^8.10.0",
@@ -38,8 +38,8 @@
         "eslint-plugin-vue": "^9.24.0",
         "postcss": "^8.4.38",
         "prettier": "^2.8.8",
-        "tailwindcss": "^3.1.8",
-        "vite": "^3.2.10",
+        "tailwindcss": "^3.4.13",
+        "vite": "^5.4.8",
         "vue": "^3.2.37"
     }
 }
